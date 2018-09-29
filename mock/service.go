@@ -40,6 +40,44 @@ type Service struct {
 	ResendLogInvoked bool
 }
 
+func NewService() *Service {
+	return &Service{
+		TemplatesFn: func() ([]*swu.SWUTemplate, error) {
+			return []*swu.SWUTemplate{}, nil
+		},
+		EmailsFn: func() ([]*swu.SWUTemplate, error) {
+			return []*swu.SWUTemplate{}, nil
+		},
+		GetTemplateFn: func(id string) (*swu.SWUTemplate, error) {
+			return &swu.SWUTemplate{}, nil
+		},
+		GetTemplateVersionFn: func(id, version string) (*swu.SWUVersion, error) {
+			return &swu.SWUVersion{}, nil
+		},
+		UpdateTemplateVersionFn: func(id, version string, template *swu.SWUVersion) (*swu.SWUVersion, error) {
+			return &swu.SWUVersion{}, nil
+		},
+		CreateTemplateFn: func(template *swu.SWUVersion) (*swu.SWUTemplate, error) {
+			return &swu.SWUTemplate{}, nil
+		},
+		CreateTemplateVersionFn: func(id string, template *swu.SWUVersion) (*swu.SWUTemplate, error) {
+			return &swu.SWUTemplate{}, nil
+		},
+		SendFn: func(email *swu.SWUEmail) error {
+			return nil
+		},
+		GetLogsFn: func(q *swu.SWULogQuery) ([]*swu.SWULog, error) {
+			return []*swu.SWULog{}, nil
+		},
+		GetLogEventsFn: func(id string) (*swu.SWULogEvent, error) {
+			return &swu.SWULogEvent{}, nil
+		},
+		ResendLogFn: func(id string) (*swu.SWULogResend, error) {
+			return &swu.SWULogResend{}, nil
+		},
+	}
+}
+
 func (s *Service) Templates() ([]*swu.SWUTemplate, error) {
 	s.TemplatesInvoked = true
 	return s.TemplatesFn()
